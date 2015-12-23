@@ -1,6 +1,7 @@
 # ember-pure
+[![Build Status](https://travis-ci.org/mike-north/ember-pure.svg?branch=master)](https://travis-ci.org/mike-north/ember-pure)
 
-An ember addon to use [Pure](http://http://purecss.io/) in your ember.js app.
+An ember addon to use [Pure.css](http://http://purecss.io/) in your ember.js app.
 
 ## Setting your project up
 
@@ -59,9 +60,5 @@ module.exports = function(defaults) {
 };
 ```
 
-
-```
-
-
-**ember-pure** (c) 2015-2016 Mike North, All Rights Reserved
-**pure.css** (c) 2014 Yahoo! Inc., All Rights Reserved
+* **ember-pure** (c) 2015-2016 Mike North, All Rights Reserved
+* **pure.css** (c) 2014 Yahoo! Inc., All Rights Reserved

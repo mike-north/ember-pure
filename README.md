@@ -1,7 +1,7 @@
 # ember-pure
 [![Build Status](https://travis-ci.org/mike-north/ember-pure.svg?branch=master)](https://travis-ci.org/mike-north/ember-pure)
 
-An ember addon to use [Pure.css](http://http://purecss.io/) in your ember.js app.
+An ember addon to use [Pure.css](http://purecss.io/) in your ember.js app.
 
 ## Setting your project up
 

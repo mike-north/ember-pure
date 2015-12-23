@@ -1,9 +1,27 @@
-/*jshint node:true*/
 module.exports = {
   scenarios: [
     {
+      name: 'ember-1.11',
+      dependencies: {
+        'ember': '~1.11.0',
+        'ember-load-initializers': 'ember-cli/ember-load-initializers#0.0.2'
+      }
+    },
+    {
+      name: 'ember-1.12',
+      dependencies: {
+        'ember': '~1.12.0'
+      }
+    },
+    {
       name: 'default',
-      dependencies: { }
+      dependencies: {}
+    },
+    {
+      name: 'ember-1.13',
+      dependencies: {
+        'ember': '~1.13.0'
+      }
     },
     {
       name: 'ember-release',
@@ -17,10 +35,10 @@ module.exports = {
     {
       name: 'ember-beta',
       dependencies: {
-        'ember': 'components/ember#beta'
+        'ember': '2.0.0-beta.5'
       },
       resolutions: {
-        'ember': 'beta'
+        'ember': '2.0.0-beta.5'
       }
     },
     {

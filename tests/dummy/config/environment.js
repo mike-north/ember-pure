@@ -39,7 +39,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.baseURL = '/ember-pure';
+    ENV.locationType = 'hash';
   }
 
   return ENV;

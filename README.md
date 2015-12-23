@@ -1,6 +1,6 @@
 # ember-pure
 
-An ember addon to use [Pure](http://http://purecss.io/) in your ember.js app.
+An ember addon to use [Pure.css](http://http://purecss.io/) in your ember.js app.
 
 ## Setting your project up
 

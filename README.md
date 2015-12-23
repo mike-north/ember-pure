@@ -59,6 +59,5 @@ module.exports = function(defaults) {
 };
 ```
 
-
-**ember-pure** (c) 2015-2016 Mike North, All Rights Reserved
-**pure.css** (c) 2014 Yahoo! Inc., All Rights Reserved
+* **ember-pure** (c) 2015-2016 Mike North, All Rights Reserved
+* **pure.css** (c) 2014 Yahoo! Inc., All Rights Reserved

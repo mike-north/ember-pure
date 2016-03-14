@@ -1,6 +1,6 @@
 /*jshint node:true*/
 function scenario(emberVersion) {
-  return {
+  var s = {
     name: 'ember-' + emberVersion,
     bower: {
       dependencies: {
@@ -11,6 +11,7 @@ function scenario(emberVersion) {
       }
     }
   };
+  return s;
 }
 
 module.exports = {
@@ -21,7 +22,6 @@ module.exports = {
         dependencies: { }
       }
     },
-    scenario('1.10'),
     scenario('1.11'),
     scenario('1.12'),
     scenario('1.13'),

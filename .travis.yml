@@ -1,61 +1,46 @@
----
 language: node_js
-
 node_js:
-  - "0.12"
-
+- '0.12'
 sudo: false
-
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 env:
-  - EMBER_TRY_SCENARIO=ember-1.13
-  - EMBER_TRY_SCENARIO=ember-2.0
-  - EMBER_TRY_SCENARIO=ember-2.1
-  - EMBER_TRY_SCENARIO=ember-2.2
-  - EMBER_TRY_SCENARIO=ember-2.3
-  - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
-
+- EMBER_TRY_SCENARIO=ember-1.13
+- EMBER_TRY_SCENARIO=ember-2.0
+- EMBER_TRY_SCENARIO=ember-2.1
+- EMBER_TRY_SCENARIO=ember-2.2
+- EMBER_TRY_SCENARIO=ember-2.3
+- EMBER_TRY_SCENARIO=ember-release
+- EMBER_TRY_SCENARIO=ember-beta
+- ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
 matrix:
   fast_finish: true
   allow_failures:
-    - env: ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
-
+  - env: ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
 before_install:
-  - mkdir travis-phantomjs
-  - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  - tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-  - export PATH=$PWD/travis-phantomjs:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
-
+- mkdir travis-phantomjs
+- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
+- export PATH=$PWD/travis-phantomjs:$PATH
+- npm config set spin false
+- npm install -g npm@^2
 install:
-  - npm install -g bower
-  - npm install
-  - bower install
-
+- npm install -g bower
+- npm install
+- bower install
 script:
-  - ember try $EMBER_TRY_SCENARIO test
-
-
+- ember try $EMBER_TRY_SCENARIO test
 after_success:
-# Remove the downloaded copy of phantomJS
 - rm -rf travis-phantomjs
-# Add a remote, authenticating via an OAuth token (encrypted via "travis secure")
 - git remote add deploy https://$GH_TOKEN:x-oauth-basic@github.com/mike-north/ember-pure.git
-# Download all branches from this new remote (really the same remote, but different auth)
 - git fetch deploy
-# Check out a local copy of "master", but don't switch to it yet
 - git branch gh-pages deploy/gh-pages
-# Set up some required git config stuff (more env variables encrypted via "travis secure")
 - git config user.name Mike North
 - git config user.email michael.l.north@gmail.com
-# Generate the github pages. When this command is finished I'll be on "master" branch with a
-# new commit already made (but not pushed)
-# Push the new commit
-- /bin/bash lib/try-generate-pages.sh
+- "/bin/bash lib/try-generate-pages.sh"
 - git checkout master
+notifications:
+  slack:
+    secure: RUG0sPlZStxKHcFqWY9GyMXyu5ciO37mrz3ZvFoU++g8Y9s5JgkGzcbmmptbecJyBLrelUU4LK0i62cKPmZ4Otq50Bn0bppz2lhouUrWv6sR/H90CrDpM9Z8uGH3RhqLbG5N5PUU0k2vAKoky5nlvJRvRqBxwWC/HWd4RLu76ttQj7lKdTF3fEciaer0pIChnx3bCPMzGxth+9uoc60oPrIFY48HDttoWDnQVOr7zf+ME13p9vJi1aLOZw/DsB5Xsa6BPo6fTOYPW32DOdPva7X+DNPpdAOJmOJJ81oa7/RGIhl9R8HPGMaf6ajmf1SQN1+Hwggg4vsyGpphvjxcdZ6fxe4Wi1i5939xVYJiR99QWRiKFfgcSPrbtyxaXtmiqXmARbj8ocI5iTLvC7FEptbvrqrrhtsP91bjwhXcqZpPi+aymI4KLtXpkpl4qxgroy48FPfpO7wvSpGlhz/DDlZYrOVWzks2fhh6j0tOWazihbWfyJDNjGGVbQ3T5+K11XB23FKSVDUpkLZbuKaZ7wvi0QY5w5u4H1fBC0niPRx7HLXM7qLcP4gy6EwiiQ44ASJ/VItO9qnsnvTrpqC7mBc2+mXYy6QYaPdNxjyoDeTRF3cpiK4I+B0wvyuROT2ercQg/HU0d0j2SuZD/T4dYyk5iyK+zTIhwTyC8LiC4fg=

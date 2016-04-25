@@ -1,5 +1,6 @@
 # ember-pure
-[![Build Status](https://travis-ci.org/mike-north/ember-pure.svg?branch=master)](https://travis-ci.org/mike-north/ember-pure)
+[![Build Status](https://travis-ci.org/mike-north/ember-pure.svg?branch=master)](https://travis-ci.org/mike-north/ember-pure) [![Ember Observer Score](https://emberobserver.com/badges/ember-pure.svg)](https://emberobserver.com/addons/ember-pure)
+[![Code Climate](https://codeclimate.com/github/mike-north/ember-pure/badges/gpa.svg)](https://codeclimate.com/github/mike-north/ember-pure) [![npm version](https://badge.fury.io/js/ember-pure.svg)](https://badge.fury.io/js/ember-pure)
 
 An ember addon to use [Pure.css](http://purecss.io/) in your ember.js app.
 

@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const { Component, computed } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['x-example'],
   snippetName: computed('name', function() {
     return `${this.get('name')}.hbs`;

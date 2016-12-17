@@ -13,7 +13,7 @@
   },
   "repository": "https://github.com/mike-north/ember-pure.git",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4"
   },
   "author": "Mike North (https://mike.works) <michael.l.north@gmail.com>",
   "license": "MIT",

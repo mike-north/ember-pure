@@ -9,7 +9,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:testall"
+    "test": "ember try:each"
   },
   "repository": "https://github.com/mike-north/ember-pure.git",
   "engines": {
@@ -37,6 +37,7 @@
     "ember-source": "~2.13.0",
     "ember-sublime": "0.0.9",
     "eslint-plugin-ember-suave": "^1.0.0",
+    "greenkeeper-lockfile": "^1.2.1",
     "loader.js": "^4.2.3"
   },
   "keywords": [
@@ -53,7 +54,7 @@
     "rsvp": "^3.1.0"
   },
   "ember-addon": {
-    "demoURL": "http://mike.works/ember-pure/",
+    "demoURL": "http://mike.works/oss/ember-pure/",
     "configPath": "tests/dummy/config"
   }
 }

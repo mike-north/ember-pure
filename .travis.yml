@@ -1,37 +1,39 @@
 language: node_js
 node_js:
-- '0.12'
+  - "6"
+
 sudo: false
+
 cache:
-  directories:
-  - node_modules
+  yarn: true
+
 env:
-- EMBER_TRY_SCENARIO=ember-1.13
-- EMBER_TRY_SCENARIO=ember-2.0
-- EMBER_TRY_SCENARIO=ember-2.1
-- EMBER_TRY_SCENARIO=ember-2.2
-- EMBER_TRY_SCENARIO=ember-2.3
-- EMBER_TRY_SCENARIO=ember-release
-- EMBER_TRY_SCENARIO=ember-beta
-- ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-1.13
+  - EMBER_TRY_SCENARIO=ember-lts-2.4
+  - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-default
+  - ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
 matrix:
   fast_finish: true
   allow_failures:
-  - env: ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
+    - env: ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
+
 before_install:
-- mkdir travis-phantomjs
-- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-- export PATH=$PWD/travis-phantomjs:$PATH
-- npm config set spin false
-- npm install -g npm@^2
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+  - yarn global add phantomjs-prebuilt
+  - yarn global add bower
+  - phantomjs --version
+
 install:
-- npm install -g bower
-- npm install
-- bower install
+  - yarn install --no-lockfile
+  - bower install
+
 script:
-- ember try $EMBER_TRY_SCENARIO test
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
 after_success:
 - rm -rf travis-phantomjs
 - git remote add deploy https://$GH_TOKEN:x-oauth-basic@github.com/mike-north/ember-pure.git
@@ -41,6 +43,3 @@ after_success:
 - git config user.email michael.l.north@gmail.com
 - "/bin/bash lib/try-generate-pages.sh"
 - git checkout master
-notifications:
-  slack:
-    secure: r6naoUedqW8Wy69kFUyYKxQpEyvpcO1oee34XH8eGXiA6QV3+o5ylQbMquiCOJAGtpjVdTwGs5pCYp00xMz5OF7eok0Y2hHlbcUX052WpBQhqLKjsGKnXzkmPC5ZcFoow9QACyVp6o8K4nOyDholGs+X9FRAdkYR2EwisUfLZmplXcQNIrxwgE+vz9EnT3D9H8c05D7UmvC8MNwPja4YD19Qq+u0lH0/9JAnfnpjKIJlrNM4PDvDrOXDur6OOHzhsCEFDETj6OcNOi70yNuQpf8HmXiFBMZsbqO9/c1WwRIfkU/rj8JZe8xU6BdVJGweaabn0A9NXK+Kcrml7LYc0lEQrEPx8kdUowj9NqI5MG+1njPdpSWkBKbOtfQGlZ7o2pvcJPhWmrqpHNm2/J8ex5ggjT6euWF83HN6cQKAz0AGLCWVFaoLf5LdsFyxYuwkgmLWCOexniwcCHdgxglAHP1JZAyWrxa93KV8mADlmAL92LKPX2oKsYl+UrD7nlaYpibnkbdGIQsCF3L0/ZzDklSWMdBRH0uIMy4LNSp6UkQM2mVw7gvRg5je1jR0XOCMps7TatvyPOVdE9UJOc+GgUFhSYjxYpr6u/yEUFkPw7Fa1KXlXh8/6Wr6q7yd0yhsr+BATyzts+R4n9kLr6K6ZE7thYAv3Q2tHK8QTHu74Mk=

@@ -1,14 +1,6 @@
 {
   "name": "ember-pure",
   "dependencies": {
-    "ember": "~2.4.1",
-    "ember-cli-shims": "0.1.0",
-    "ember-cli-test-loader": "0.2.2",
-    "ember-qunit-notifications": "0.1.0",
-    "pure": "~0.6.0",
-    "font-awesome": "~4.4.0"
-  },
-  "resolutions": {
-    "ember": "~2.4.1"
+    "pure": "~0.6.0"
   }
 }

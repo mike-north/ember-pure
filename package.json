@@ -14,7 +14,7 @@
   },
   "repository": "https://github.com/mike-north/ember-pure.git",
   "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
+    "node": "6.* || >= 7.*"
   },
   "author": "Mike North (https://mike.works) <michael.l.north@gmail.com>",
   "license": "MIT",
@@ -42,14 +42,7 @@
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.0.0"
   },
-  "keywords": [
-    "ember-addon",
-    "pure",
-    "ui",
-    "yahoo",
-    "mobile",
-    "minimal"
-  ],
+  "keywords": ["ember-addon", "pure", "ui", "yahoo", "mobile", "minimal"],
   "dependencies": {
     "ember-cli-babel": "^6.11.0",
     "ember-cli-htmlbars": "^2.0.3",

@@ -42,7 +42,14 @@
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.0.0"
   },
-  "keywords": ["ember-addon", "pure", "ui", "yahoo", "mobile", "minimal"],
+  "keywords": [
+    "ember-addon",
+    "pure",
+    "ui",
+    "yahoo",
+    "mobile",
+    "minimal"
+  ],
   "dependencies": {
     "ember-cli-babel": "^6.11.0",
     "ember-cli-htmlbars": "^2.0.3",

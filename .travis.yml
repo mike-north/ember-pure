@@ -1,46 +1,60 @@
+---
 language: node_js
 node_js:
-- '0.12'
+  - "4"
+
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
+
 cache:
-  directories:
-  - node_modules
+  yarn: true
+
 env:
-- EMBER_TRY_SCENARIO=ember-1.13
-- EMBER_TRY_SCENARIO=ember-2.0
-- EMBER_TRY_SCENARIO=ember-2.1
-- EMBER_TRY_SCENARIO=ember-2.2
-- EMBER_TRY_SCENARIO=ember-2.3
-- EMBER_TRY_SCENARIO=ember-release
-- EMBER_TRY_SCENARIO=ember-beta
-- ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+  matrix:
+    # we recommend new addons test the current and previous LTS
+    # as well as latest stable release (bonus points to beta/canary)
+    - EMBER_TRY_SCENARIO=ember-lts-2.12
+    - EMBER_TRY_SCENARIO=ember-lts-2.16
+    - EMBER_TRY_SCENARIO=ember-release
+    - EMBER_TRY_SCENARIO=ember-beta
+    - EMBER_TRY_SCENARIO=ember-canary
+    - EMBER_TRY_SCENARIO=ember-default
+
 matrix:
   fast_finish: true
   allow_failures:
-  - env: ALLOW_DEPRECATIONS=true EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-canary
+
 before_install:
-- mkdir travis-phantomjs
-- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-- export PATH=$PWD/travis-phantomjs:$PATH
-- npm config set spin false
-- npm install -g npm@^2
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
 install:
-- npm install -g bower
-- npm install
-- bower install
+  - yarn global add bower
+  - yarn install --no-lockfile --non-interactive
+  - bower install
+
 script:
-- ember try $EMBER_TRY_SCENARIO test
+  - yarn lint:js
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+
 after_success:
-- rm -rf travis-phantomjs
-- git remote add deploy https://$GH_TOKEN:x-oauth-basic@github.com/mike-north/ember-pure.git
-- git fetch deploy
-- git branch gh-pages deploy/gh-pages
-- git config user.name Mike North
-- git config user.email michael.l.north@gmail.com
-- "/bin/bash lib/try-generate-pages.sh"
-- git checkout master
+  - git remote add deploy https://$GH_TOKEN:x-oauth-basic@github.com/mike-north/ember-pure.git
+  - git fetch deploy
+  - git branch gh-pages deploy/gh-pages
+  - git config user.name Mike North
+  - git config user.email michael.l.north@gmail.com
+  - "/bin/bash lib/try-generate-pages.sh"
+  - git checkout master
+
 notifications:
   slack:
     secure: r6naoUedqW8Wy69kFUyYKxQpEyvpcO1oee34XH8eGXiA6QV3+o5ylQbMquiCOJAGtpjVdTwGs5pCYp00xMz5OF7eok0Y2hHlbcUX052WpBQhqLKjsGKnXzkmPC5ZcFoow9QACyVp6o8K4nOyDholGs+X9FRAdkYR2EwisUfLZmplXcQNIrxwgE+vz9EnT3D9H8c05D7UmvC8MNwPja4YD19Qq+u0lH0/9JAnfnpjKIJlrNM4PDvDrOXDur6OOHzhsCEFDETj6OcNOi70yNuQpf8HmXiFBMZsbqO9/c1WwRIfkU/rj8JZe8xU6BdVJGweaabn0A9NXK+Kcrml7LYc0lEQrEPx8kdUowj9NqI5MG+1njPdpSWkBKbOtfQGlZ7o2pvcJPhWmrqpHNm2/J8ex5ggjT6euWF83HN6cQKAz0AGLCWVFaoLf5LdsFyxYuwkgmLWCOexniwcCHdgxglAHP1JZAyWrxa93KV8mADlmAL92LKPX2oKsYl+UrD7nlaYpibnkbdGIQsCF3L0/ZzDklSWMdBRH0uIMy4LNSp6UkQM2mVw7gvRg5je1jR0XOCMps7TatvyPOVdE9UJOc+GgUFhSYjxYpr6u/yEUFkPw7Fa1KXlXh8/6Wr6q7yd0yhsr+BATyzts+R4n9kLr6K6ZE7thYAv3Q2tHK8QTHu74Mk=

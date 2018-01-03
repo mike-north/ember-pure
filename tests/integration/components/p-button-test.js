@@ -6,13 +6,17 @@ moduleForComponent('p-button', 'Integration | Component | p button', {
 });
 
 test('it renders', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
   this.render(hbs`{{p-button}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  );
 
   // Template block usage:" + EOL +
   this.render(hbs`
@@ -21,27 +25,40 @@ test('it renders', function(assert) {
     {{/p-button}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'template block text'
+  );
 });
 
 test('disabled state is handled with appropriate style', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
   this.render(hbs`{{#p-button disabled=true}}Disabled{{/p-button}}`);
 
-  assert.equal(this.$().text().trim(), 'Disabled');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'Disabled'
+  );
   assert.equal(this.$('.pure-button').hasClass('pure-button-disabled'), true);
 });
 
 test('active state is handled with appropriate style', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
   this.render(hbs`{{#p-button active=true}}Active{{/p-button}}`);
 
-  assert.equal(this.$().text().trim(), 'Active');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'Active'
+  );
   assert.equal(this.$('.pure-button').hasClass('pure-button-active'), true);
 });

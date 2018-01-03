@@ -7,7 +7,7 @@ test('visiting /', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.equal(find('.pure-button-primary').css('background-color'), 'rgb(0, 120, 231)');
+    assert.equal(find('.pure-button-primary').css('margin-top'), '20px');
     assert.equal(currentURL(), '/');
   });
 });

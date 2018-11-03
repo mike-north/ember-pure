@@ -1,7 +1,6 @@
----
 language: node_js
 node_js:
-  - "6"
+  - '10'
 
 sudo: false
 dist: trusty
@@ -16,16 +15,6 @@ env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
-  matrix:
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - EMBER_TRY_SCENARIO=ember-lts-2.12
-    - EMBER_TRY_SCENARIO=ember-lts-2.16
-    - EMBER_TRY_SCENARIO=ember-release
-    - EMBER_TRY_SCENARIO=ember-beta
-    - EMBER_TRY_SCENARIO=ember-canary
-    - EMBER_TRY_SCENARIO=ember-default
-
 matrix:
   fast_finish: true
   allow_failures:
@@ -52,9 +41,23 @@ after_success:
   - git branch gh-pages deploy/gh-pages
   - git config user.name Mike North
   - git config user.email michael.l.north@gmail.com
-  - "/bin/bash lib/try-generate-pages.sh"
+  - '/bin/bash lib/try-generate-pages.sh'
   - git checkout master
 
 notifications:
   slack:
     secure: r6naoUedqW8Wy69kFUyYKxQpEyvpcO1oee34XH8eGXiA6QV3+o5ylQbMquiCOJAGtpjVdTwGs5pCYp00xMz5OF7eok0Y2hHlbcUX052WpBQhqLKjsGKnXzkmPC5ZcFoow9QACyVp6o8K4nOyDholGs+X9FRAdkYR2EwisUfLZmplXcQNIrxwgE+vz9EnT3D9H8c05D7UmvC8MNwPja4YD19Qq+u0lH0/9JAnfnpjKIJlrNM4PDvDrOXDur6OOHzhsCEFDETj6OcNOi70yNuQpf8HmXiFBMZsbqO9/c1WwRIfkU/rj8JZe8xU6BdVJGweaabn0A9NXK+Kcrml7LYc0lEQrEPx8kdUowj9NqI5MG+1njPdpSWkBKbOtfQGlZ7o2pvcJPhWmrqpHNm2/J8ex5ggjT6euWF83HN6cQKAz0AGLCWVFaoLf5LdsFyxYuwkgmLWCOexniwcCHdgxglAHP1JZAyWrxa93KV8mADlmAL92LKPX2oKsYl+UrD7nlaYpibnkbdGIQsCF3L0/ZzDklSWMdBRH0uIMy4LNSp6UkQM2mVw7gvRg5je1jR0XOCMps7TatvyPOVdE9UJOc+GgUFhSYjxYpr6u/yEUFkPw7Fa1KXlXh8/6Wr6q7yd0yhsr+BATyzts+R4n9kLr6K6ZE7thYAv3Q2tHK8QTHu74Mk=
+stages:
+  - basic test
+  - additional tests
+jobs:
+  fail_fast: true
+  include:
+    - stage: basic test
+      env: EMBER_TRY_SCENARIO=ember-release
+    - stage: additional tests
+      env: EMBER_TRY_SCENARIO=ember-lts-2.12
+    - env: EMBER_TRY_SCENARIO=ember-lts-2.16
+    - env: EMBER_TRY_SCENARIO=ember-beta
+  allow_failures:
+    - env: EMBER_TRY_SCENARIO=ember-canary

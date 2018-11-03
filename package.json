@@ -51,7 +51,7 @@
     "minimal"
   ],
   "dependencies": {
-    "ember-cli-babel": "6.11.0",
+    "ember-cli-babel": "6.17.2",
     "ember-cli-htmlbars": "2.0.3",
     "rsvp": "4.7.0"
   },

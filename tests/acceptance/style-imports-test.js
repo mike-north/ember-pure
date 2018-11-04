@@ -1,13 +1,14 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { currentURL, visit, findAll } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | style imports');
+module('Acceptance | style imports', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visiting /', function(assert) {
-  visit('/');
-
-  andThen(function() {
-    assert.equal(find('.pure-button-primary').css('margin-top'), '20px');
+  test('visiting /', async function(assert) {
+    await visit('/');
+    const elem = findAll('.pure-button-primary')[0];
+    assert.equal(elem.computedStyleMap().get('margin-top').value, 20);
     assert.equal(currentURL(), '/');
   });
 });

@@ -1,64 +1,46 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('p-button', 'Integration | Component | p button', {
-  integration: true
-});
+module('Integration | Component | p button', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+  test('it renders', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  this.render(hbs`{{p-button}}`);
+    await render(hbs`{{p-button}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    ''
-  );
+    assert.equal(this.element.textContent.trim(), '');
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#p-button}}
-      template block text
-    {{/p-button}}
-  `);
+    // Template block usage:" + EOL +
+    await render(hbs`
+      {{#p-button}}
+        template block text
+      {{/p-button}}
+    `);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    'template block text'
-  );
-});
+    assert.equal(this.element.textContent.trim(), 'template block text');
+  });
 
-test('disabled state is handled with appropriate style', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+  test('disabled state is handled with appropriate style', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  this.render(hbs`{{#p-button disabled=true}}Disabled{{/p-button}}`);
+    await render(hbs`{{#p-button disabled=true}}Disabled{{/p-button}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    'Disabled'
-  );
-  assert.equal(this.$('.pure-button').hasClass('pure-button-disabled'), true);
-});
+    assert.equal(this.element.textContent.trim(), 'Disabled');
+    assert.equal(this.element.querySelector('.pure-button').classList.contains('pure-button-disabled'), true);
+  });
 
-test('active state is handled with appropriate style', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+  test('active state is handled with appropriate style', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  this.render(hbs`{{#p-button active=true}}Active{{/p-button}}`);
+    await render(hbs`{{#p-button active=true}}Active{{/p-button}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    'Active'
-  );
-  assert.equal(this.$('.pure-button').hasClass('pure-button-active'), true);
+    assert.equal(this.element.textContent.trim(), 'Active');
+    assert.equal(this.element.querySelector('.pure-button').classList.contains('pure-button-active'), true);
+  });
 });

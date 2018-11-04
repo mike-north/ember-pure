@@ -1,9 +1,10 @@
 <h3>{{title}}</h3>
 <div class="example-section">
-<h4>UI</h4>
-{{partial partialPath}}
+  <h4>UI</h4>
+  {{! template-lint-disable no-partial }}
+  {{partial partialPath}}
 </div>
 <div class="example-section">
-<h4>Code</h4>
-{{code-snippet name=snippetName}}
+  <h4>Code</h4>
+  {{code-snippet name=snippetName}}
 </div>

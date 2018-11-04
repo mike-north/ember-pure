@@ -1,31 +1,33 @@
 <div class="pure-g">
-    <div class="pure-u-1-2 pure-u-md-3-4">
-        <h1 id="title">
-          {{link-to 'ember-pure' 'index'}}
-        </h1>
-    </div>
-    <div class="pure-u-1-2 pure-u-md-1-4">
-
-      <a class="pure-button pure-button-primary github-button" href="https://github.com/mike-north/ember-pure" target="_blank">
+  <div class="pure-u-1-2 pure-u-md-3-4">
+    <h1 id="title">
+      {{link-to "ember-pure" "index"}}
+    </h1>
+  </div>
+  <div class="pure-u-1-2 pure-u-md-1-4">
+    <a 
+      class="pure-button pure-button-primary github-button"
+      rel="noopener"
+      href="https://github.com/mike-north/ember-pure"
+      target="_blank"
+    >
       {{fa-icon "github"}}
-      Github</a>
-    </div>
-    <div class="pure-u-1-1 pure-u-md-1-5">
-      <div class="pure-menu component-menu">
-        <span class="pure-menu-heading">Components</span>
+      Github
+    </a>
+  </div>
+  <div class="pure-u-1-1 pure-u-md-1-5">
+    <div class="pure-menu component-menu">
+      <span class="pure-menu-heading">Components</span>
 
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item">
-              {{link-to 'Buttons' 'buttons' class="pure-menu-link"}}
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+          {{link-to "Buttons" "buttons" class="pure-menu-link"}}
 
-            </li>
-        </ul>
-      </div>
+        </li>
+      </ul>
     </div>
+  </div>
   <div class="pure-u-1-1 pure-u-md-4-5">
     {{outlet}}
   </div>
 </div>
-
-
-

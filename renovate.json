@@ -1,6 +1,7 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "automerge": true
+  "extends": ["config:js-lib"],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  }
 }

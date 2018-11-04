@@ -1,4 +1,7 @@
 {
   "javascript.implicitProjectConfig.checkJs": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "[handlebars]": {
+    "editor.formatOnSave": false
+  }
 }

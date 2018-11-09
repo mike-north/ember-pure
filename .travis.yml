@@ -37,7 +37,7 @@ script:
   - yarn lint:js
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO &7 yarn travis-deploy-once "yarn semantic-release"
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO && yarn travis-deploy-once "yarn semantic-release"
 
 after_success:
   - git remote add deploy https://$GH_TOKEN:x-oauth-basic@github.com/mike-north/ember-pure.git

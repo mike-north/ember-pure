@@ -45,7 +45,7 @@ after_success:
   - git branch gh-pages deploy/gh-pages
   - git config user.name Mike North
   - git config user.email michael.l.north@gmail.com
-  - '/bin/bash lib/try-generate-pages.sh'
+  - yarn travis-deploy-once '/bin/bash lib/try-generate-pages.sh'
   - git checkout master
 
 notifications:

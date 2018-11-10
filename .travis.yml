@@ -1,6 +1,8 @@
 language: node_js
 node_js:
-  - '10'
+  # we recommend testing addons with the same minimum supported node version as Ember CLI
+  # so that your addon works for all apps
+  - '6'
 
 sudo: false
 dist: trusty
@@ -15,14 +17,37 @@ env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
-matrix:
-  fast_finish: true
+
+jobs:
+  fail_fast: true
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
-before_script:
-  - sudo chown root /opt/google/chrome/chrome-sandbox
-  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+  include:
+    # runs linting and tests with current locked deps
+
+    - stage: 'Tests'
+      name: 'Tests'
+      install:
+        - yarn install --non-interactive
+      script:
+        - yarn lint:hbs
+        - yarn lint:js
+        - yarn test
+
+    - name: 'Floating Dependencies'
+      script:
+        - yarn test
+
+    # we recommend new addons test the current and previous LTS
+    # as well as latest stable release (bonus points to beta/canary)
+    - stage: 'Additional Tests'
+      env: EMBER_TRY_SCENARIO=ember-lts-2.16
+    - env: EMBER_TRY_SCENARIO=ember-lts-2.18
+    - env: EMBER_TRY_SCENARIO=ember-release
+    - env: EMBER_TRY_SCENARIO=ember-beta
+    - env: EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -32,34 +57,4 @@ install:
   - yarn install --no-lockfile --non-interactive
 
 script:
-  - yarn lint:js
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO && yarn travis-deploy-once "yarn semantic-release"
-
-after_success:
-  - git remote add deploy https://$GH_TOKEN:x-oauth-basic@github.com/mike-north/ember-pure.git
-  - git fetch deploy
-  - git branch gh-pages deploy/gh-pages
-  - git config user.name Mike North
-  - git config user.email michael.l.north@gmail.com
-  - yarn travis-deploy-once '/bin/bash lib/try-generate-pages.sh'
-  - git checkout master
-
-notifications:
-  slack:
-    secure: r6naoUedqW8Wy69kFUyYKxQpEyvpcO1oee34XH8eGXiA6QV3+o5ylQbMquiCOJAGtpjVdTwGs5pCYp00xMz5OF7eok0Y2hHlbcUX052WpBQhqLKjsGKnXzkmPC5ZcFoow9QACyVp6o8K4nOyDholGs+X9FRAdkYR2EwisUfLZmplXcQNIrxwgE+vz9EnT3D9H8c05D7UmvC8MNwPja4YD19Qq+u0lH0/9JAnfnpjKIJlrNM4PDvDrOXDur6OOHzhsCEFDETj6OcNOi70yNuQpf8HmXiFBMZsbqO9/c1WwRIfkU/rj8JZe8xU6BdVJGweaabn0A9NXK+Kcrml7LYc0lEQrEPx8kdUowj9NqI5MG+1njPdpSWkBKbOtfQGlZ7o2pvcJPhWmrqpHNm2/J8ex5ggjT6euWF83HN6cQKAz0AGLCWVFaoLf5LdsFyxYuwkgmLWCOexniwcCHdgxglAHP1JZAyWrxa93KV8mADlmAL92LKPX2oKsYl+UrD7nlaYpibnkbdGIQsCF3L0/ZzDklSWMdBRH0uIMy4LNSp6UkQM2mVw7gvRg5je1jR0XOCMps7TatvyPOVdE9UJOc+GgUFhSYjxYpr6u/yEUFkPw7Fa1KXlXh8/6Wr6q7yd0yhsr+BATyzts+R4n9kLr6K6ZE7thYAv3Q2tHK8QTHu74Mk=
-stages:
-  - basic test
-  - additional tests
-jobs:
-  fail_fast: true
-  include:
-    - stage: basic test
-      env: EMBER_TRY_SCENARIO=ember-release
-    - stage: additional tests
-      env: EMBER_TRY_SCENARIO=ember-lts-2.12
-    - env: EMBER_TRY_SCENARIO=ember-lts-2.16
-    - env: EMBER_TRY_SCENARIO=ember-beta
-  allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary

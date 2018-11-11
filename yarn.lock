@@ -812,7 +812,7 @@
     ember-cli-babel-plugin-helpers "^1.0.0"
     ember-cli-version-checker "^2.1.0"
 
-"@ember/optional-features@^0.6.3":
+"@ember/optional-features@0.6.4":
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/@ember/optional-features/-/optional-features-0.6.4.tgz#8199f853c1781234fcb1f05090cddd0b822bff69"
   integrity sha512-nKmKxMk+Q/BGE8cmfq8KTHnYHVgrU3GHhy/eZ/OTj/fUvzXZhxaEVFOfAXssiOzV3FOQDJjznpbua2TEtHaQRw==
@@ -947,7 +947,7 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mike-north/js-lib-renovate-config@^1.0.0":
+"@mike-north/js-lib-renovate-config@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@mike-north/js-lib-renovate-config/-/js-lib-renovate-config-1.0.0.tgz#e00a7264de0767049d3a75c29e36db69b0ac81cf"
   integrity sha512-ixKtfThE8RFJDAFXrypSYPEkPzXB8yTaRjillj5/T5JcF4+pWfrDKhOUb2tytnJLBgNzUjohWwIdxy6yFbWRbQ==
@@ -1122,7 +1122,7 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@types/ember@*", "@types/ember@^3.0.25":
+"@types/ember@*", "@types/ember@3.0.25":
   version "3.0.25"
   resolved "https://registry.yarnpkg.com/@types/ember/-/ember-3.0.25.tgz#9ab6a8be3d03a72176824bb7a59583648b6b1ced"
   integrity sha512-+M4yzJ0v+Ly62clAoxmAxViFg+/2HiktQnzKh825/y9Ra3k7o4PFsas0Z7xERmRVleqtPikehwdi6BuEnPUVkw==
@@ -1218,7 +1218,7 @@
   dependencies:
     "@types/handlebars" "*"
 
-"@types/ember__test-helpers@^0.7.6":
+"@types/ember__test-helpers@0.7.6":
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-0.7.6.tgz#f26050fc74cd8ce111ee9e01864a293d6a9ac7ac"
   integrity sha512-TEIitF7M984drIuK1iKHWfU7BLvdp4qakC7Qwmz88HoJxjdMKHHYAIIVO+SPZdXBCmPjOmCs87bz2okMs9nU2Q==
@@ -4738,7 +4738,7 @@ ember-cli-string-utils@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
   integrity sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=
 
-ember-cli-template-lint@^1.0.0-beta.1:
+ember-cli-template-lint@1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/ember-cli-template-lint/-/ember-cli-template-lint-1.0.0-beta.2.tgz#0ebd2f8c1f9ca47f9ee3b42755d66262440c14f6"
   integrity sha512-i37mJhz+dll7eP/Y3Yh8oLw5aRqfdnIiutqdLsrvTSLb4VphDXbujXCO8XravvZtGeGBVYKXGsjTxobbPXgsgw==
@@ -4888,7 +4888,7 @@ ember-cli@3.5.0:
     watch-detector "^0.1.0"
     yam "^0.0.24"
 
-ember-code-snippet@^2.3.1:
+ember-code-snippet@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/ember-code-snippet/-/ember-code-snippet-2.3.1.tgz#dd4b05d6fe9595c6cab532b70d70f9a442962046"
   integrity sha512-vx6Oia5+fEw4kh0Jl6H3RPIJ9PFfAIHEjVza6FfEwZNdWlsXQbu+jff7KGBTw5oqEeXpXPd9L8Jbk0TgZw5f6w==
@@ -4921,7 +4921,7 @@ ember-export-application-global@2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
 
-ember-font-awesome@^4.0.0-rc.4:
+ember-font-awesome@4.0.0-rc.4:
   version "4.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/ember-font-awesome/-/ember-font-awesome-4.0.0-rc.4.tgz#7d4b7fbb401e21afeb7068cbb42ac8d8a84873f7"
   integrity sha1-fUt/u0AeIa/rcGjLtCrI2KhIc/c=
@@ -4954,7 +4954,7 @@ ember-load-initializers@2.0.0:
   dependencies:
     ember-cli-babel "^7.0.0"
 
-ember-maybe-import-regenerator@^0.1.6:
+ember-maybe-import-regenerator@0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-maybe-import-regenerator/-/ember-maybe-import-regenerator-0.1.6.tgz#35d41828afa6d6a59bc0da3ce47f34c573d776ca"
   integrity sha1-NdQYKK+m1qWbwNo85H80xXPXdso=
@@ -5020,7 +5020,7 @@ ember-router-generator@^1.2.3:
   dependencies:
     recast "^0.11.3"
 
-ember-source-channel-url@^1.0.1, ember-source-channel-url@^1.1.0:
+ember-source-channel-url@1.1.0, ember-source-channel-url@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-source-channel-url/-/ember-source-channel-url-1.1.0.tgz#73de5cc6ebc25b2120e932ec1d8f82677bfaf6ef"
   integrity sha512-y1RVXmyqrdX6zq9ZejpPt7ohKNGuLMBEKaOUyxFWcYAM5gvLuo6xFerwNmXEBbu4e3//GaoasjodXi6Cl+ddUQ==
@@ -5071,7 +5071,7 @@ ember-try-config@^3.0.0:
     rsvp "^4.8.1"
     semver "^5.5.0"
 
-ember-try@^1.1.0:
+ember-try@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-try/-/ember-try-1.1.0.tgz#194d5843a79b5a9fc0e4c07445ebc18c08a91e78"
   integrity sha512-NL1rKPz2LuyVEqwoNV+SQD4c2w1/A0rrdeT6jqTYqlt/P7y3+SWcsxyReBnImebaIu7Drtz6p9yiAsrJq5Chyg==
@@ -11498,7 +11498,7 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-semantic-release@^15.10.8, semantic-release@^15.9.9:
+semantic-release@15.10.8, semantic-release@^15.9.9:
   version "15.10.8"
   resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-15.10.8.tgz#07027a159199148998dc5f246ed6533d0441851c"
   integrity sha512-+n1eQArIw0TROFFwyf6csSLtKPt47goFbYk0ROAz3ja0r0ltV/ClKNCN6bkV2XzVlvTYqYFY6yutOIvPr1K4hQ==
@@ -12645,7 +12645,7 @@ traverse@~0.6.6:
   resolved "https://registry.yarnpkg.com/traverse/-/traverse-0.6.6.tgz#cbdf560fd7b9af632502fed40f918c157ea97137"
   integrity sha1-y99WD9e5r2MlAv7UD5GMFX6pcTc=
 
-travis-deploy-once@^5.0.9:
+travis-deploy-once@5.0.9, travis-deploy-once@^5.0.9:
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/travis-deploy-once/-/travis-deploy-once-5.0.9.tgz#c5a2f639e17d8fd542f66d25ade126179d5e8acf"
   integrity sha512-cyHFErzq0HTEGY29RAq1clqFdt/IkCrlcOmyM1cGoGnEyukrrFi1fpy6JH3Mlf+88XsFwvluqKVWzj2bdz3k8A==

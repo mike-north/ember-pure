@@ -57,7 +57,7 @@
     "eslint-plugin-node": "11.1.0",
     "husky": "2.4.1",
     "loader.js": "4.7.0",
-    "qunit-dom": "1.6.0",
+    "qunit-dom": "2.0.0",
     "semantic-release": "15.12.5"
   },
   "keywords": [
@@ -70,7 +70,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^7.0.0",
-    "ember-cli-htmlbars": "^5.0.0",
+    "ember-cli-htmlbars": "^6.0.0",
     "rsvp": "^4.8.4"
   },
   "ember-addon": {
